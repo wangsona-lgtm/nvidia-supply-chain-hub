@@ -202,5 +202,97 @@ window.CAPEX_FORECAST_DATA = {
     { quarter: "2026 全年", nvl72: 65000, nvl36: 25000, total: 90000, note: "Blackwell 與下一代 Rubin 平行出貨，主權 AI 採購比重顯著增加" }
   ],
 
+  // ROIC - WACC 經濟增加值 (EVA Spread) 核心矩陣
+  roicWaccMatrix: [
+    {
+      company: "輝達 (NVIDIA / NVDA)",
+      ticker: "NVDA",
+      role: "AI 晶片原廠霸主 (Fabless)",
+      roic: "82.5%",
+      wacc: "10.8%",
+      spread: "+71.7%",
+      status: "極致價值創造怪物 (全球第一)",
+      color: "#76b900",
+      analysis: "無晶圓廠輕資產營運 + 75% 壟斷級毛利率，投入資本極少卻產出龐大 NOPAT，創造資本市場史上最狂暴的經濟利差！"
+    },
+    {
+      company: "微軟 (Microsoft / MSFT)",
+      ticker: "MSFT",
+      role: "AI 雲端與軟體應用霸主",
+      roic: "28.5%",
+      wacc: "9.1%",
+      spread: "+19.4%",
+      status: "卓越價值創造 (安全緩衝厚)",
+      color: "#00a4ef",
+      analysis: "高毛利軟體+Azure 雙輪驅動，利差達 19.4%，即便 2025 年投入 760 億 CapEx 使投入資本增加，ROIC 仍穩居 WACC 兩倍以上。"
+    },
+    {
+      company: "Meta Platforms (META)",
+      ticker: "META",
+      role: "開源 Llama 與社群廣告引擎",
+      roic: "29.8%",
+      wacc: "9.8%",
+      spread: "+20.0%",
+      status: "卓越價值創造 (零債務包袱)",
+      color: "#0668e1",
+      analysis: "零長期硬體負債，AI 演算法驅動廣告轉化率年增雙位數，利差高達 20%，每增加 1 元資本投入創造 0.3 元稅後淨營業利益。"
+    },
+    {
+      company: "Alphabet (Google / GOOGL)",
+      ticker: "GOOGL",
+      role: "搜尋霸主與雲端雙軌 AI",
+      roic: "27.2%",
+      wacc: "9.3%",
+      spread: "+17.9%",
+      status: "卓越價值創造 (安全緩衝厚)",
+      color: "#34a853",
+      analysis: "搜尋現金牛極其雄厚，GCP 營業利益率翻正持續擴張，利差近 18%，資本投資回報率遠超市場要求門檻。"
+    },
+    {
+      company: "亞馬遜 (Amazon / AMZN)",
+      ticker: "AMZN",
+      role: "AWS 雲端算力與全球電商",
+      roic: "14.2%",
+      wacc: "8.8%",
+      spread: "+5.4%",
+      status: "正向價值創造 (利差加速擴張)",
+      color: "#ff9900",
+      analysis: "受零售物流倉儲重資產拖累整體 ROIC 較純軟體巨頭低，但 AWS 與高毛利廣告業務快速佔比提升，帶動利差連續三年向上突破。"
+    },
+    {
+      company: "台積電 (TSMC / 2330)",
+      ticker: "2330.TW",
+      role: "重資本晶圓代工與 CoWoS 獨家",
+      roic: "30.5%",
+      wacc: "8.2%",
+      spread: "+22.3%",
+      status: "重資本奇蹟 (先進製程獨霸)",
+      color: "#00ff88",
+      analysis: "年年投入逾 300 億美元高額 CapEx，但因先進製程定價權無人能比，ROIC 高達 30.5%，顛覆重資產行業低利差宿命！"
+    },
+    {
+      company: "川湖 (King Slide / 2059)",
+      ticker: "2059.TW",
+      role: "AI 伺服器超高荷重專利滑軌",
+      roic: "28.0%",
+      wacc: "7.8%",
+      spread: "+20.2%",
+      status: "利基型零組件毛利王 (>65%)",
+      color: "#ffd700",
+      analysis: "全球高階伺服器導軌市佔 >85%，上千項專利構築無敵定價權，小型製造業創造出媲美軟體巨頭的極高經濟利差。"
+    },
+    {
+      company: "鴻海 / 廣達 (Server ODM)",
+      ticker: "2317 / 2382",
+      role: "AI 伺服器整櫃系統組裝 (L10-L12)",
+      roic: "18.2%",
+      wacc: "7.5%",
+      spread: "+10.7%",
+      status: "高效周轉價值創造",
+      color: "#c084fc",
+      analysis: "毛利率雖僅 7%~9%，但存貨周轉率高達 8~10 次/年，資產運用極其精準，在台灣低資金成本環境下穩健享有 10% 以上正利差。"
+    }
+  ],
+
   strategicSummary: "根據彭博與摩根士丹利最新統計，四大雲端巨頭 2025 年資本支出將突破 2,760 億美元大關，2026 年進一步挺進 3,250 億美元。四大科技巨頭擁有極其充沛的自有造血能力：2025 年合計營業活動現金流 (OCF) 超過 5,200 億美元，扣除破紀錄 CapEx 後自由現金流 (FCF) 仍高達 2,470 億美元，且帳上持有超過 3,300 億美元現金儲備，徹底消弭市場對 AI 資本開支無法持續的疑慮！"
 };

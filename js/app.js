@@ -671,7 +671,66 @@ function renderCapexForecastSection() {
       </div>
     </div>
 
-    <!-- 4. 戰略深度剖析卡片：為何 AI 資本支出具備長期持續性？ -->
+    <!-- 4. ROIC − WACC 經濟利差與股東價值創造矩陣 (EVA Spread Matrix) -->
+    <div class="arch-table-card">
+      <div style="padding:16px 20px; background:linear-gradient(90deg, #09101d, #0f1c30); border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+          <div class="live-pill" style="display:inline-flex; margin-bottom:4px;">
+            <span class="live-dot"></span>
+            <span>資本定價核心 · 經濟增加值 (EVA)</span>
+          </div>
+          <h3 style="font-size:16px; font-weight:900; color:#fff; display:flex; align-items:center; gap:8px;">
+            <span style="color:#a3e635;">🎯</span> 全球 AI 巨頭 ROIC − WACC 經濟利差與價值創造矩陣 (Economic Spread)
+          </h3>
+          <p style="font-size:11.5px; color:#94a3b8; margin-top:3px; line-height:1.5;">
+            <strong>公式：經濟利差 (Spread) = ROIC (投入資本回報率) − WACC (加權資金成本)</strong>。當 Spread > 0，投入資本 (CapEx) 越大，為股東創造的真實財富越多；反之若 Spread < 0，則屬毀滅價值的過度投資。
+          </p>
+        </div>
+        <span class="fin-badge-green" style="font-size:11px; padding:4px 10px;">超額收益黃金準繩</span>
+      </div>
+      <div class="arch-table-wrapper">
+        <table class="arch-spec-table">
+          <thead>
+            <tr>
+              <th>公司名稱 (代號)</th>
+              <th>產業價值鏈定位</th>
+              <th style="color:#a3e635;">ROIC (投入資本回報率)</th>
+              <th style="color:#fb7185;">WACC (加權資金成本)</th>
+              <th style="color:#ffd700;">經濟利差 (ROIC − WACC)</th>
+              <th>股東價值創造狀態</th>
+              <th>核心定價權與財務護城河剖析</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${(data.roicWaccMatrix || []).map(r => `
+              <tr>
+                <td>
+                  <strong style="color:#fff;">${r.company}</strong>
+                </td>
+                <td style="color:#94a3b8;">${r.role}</td>
+                <td style="font-family:var(--font-mono); color:#a3e635; font-weight:bold; font-size:13px;">
+                  ${r.roic}
+                </td>
+                <td style="font-family:var(--font-mono); color:#fb7185; font-weight:bold;">
+                  ${r.wacc}
+                </td>
+                <td style="font-family:var(--font-mono); color:#ffd700; font-weight:900; font-size:13px;">
+                  ${r.spread}
+                </td>
+                <td>
+                  <span class="fin-badge-green">${r.status}</span>
+                </td>
+                <td style="font-size:11px; color:#cbd5e1; max-width:320px; white-space:normal; line-height:1.45;">
+                  ${r.analysis}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5. 戰略深度剖析卡片：為何 AI 資本支出具備長期持續性？ -->
     <div class="bottlenecks-grid" style="margin-bottom:24px;">
       <div class="bottleneck-card" style="border-top:3px solid #a3e635;">
         <div class="bottleneck-header">
