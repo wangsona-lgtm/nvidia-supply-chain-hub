@@ -1,2 +1,24 @@
-# nvidia-supply-chain-hub
-NVIDIA AI 晶片上下游完整產業鏈與台美股戰情觀測站 | NVIDIA AI Ecosystem &amp; Supply Chain Terminal
+# 輝達 NVIDIA AI 全球上下游產業鏈戰情觀測站 | NVIDIA AI Ecosystem Terminal
+
+全方位解構 **NVIDIA（輝達）** Blackwell (B200/GB200) 與下一代 Rubin (R100) 的全球上下游 AI 產業生態系，串接晶圓代工、CoWoS-L 先進封裝、HBM3e、矽光子 CPO、水冷散熱（CDU/水冷板）、140kW 電源架構、AI 伺服器整機 ODM 組裝與四大雲端巨擘（CSPs）資本支出。
+
+## 🌟 五大核心戰情模組
+
+1. 🌐 **AI 上中下游產業鏈全景圖譜**：
+   - **上游 (Upstream)**：台積電 (2330)、SK海力士、美光 (MU)、新思 (SNPS)、益華 (CDNS)、安謀 (ARM)、旺矽 (6223)、穎崴 (6515)、聯鈞 (3450)、光聖 (6442)、上詮 (3363)。
+   - **中游 (Midstream)**：輝達 (NVDA)、雙鴻 (3324)、奇鋐 (3017)、台達電 (2308)、健策 (3653)、貿聯-KY (3665)、鴻海 (2317)、廣達 (2382)、緯穎 (6669)、緯創 (3231)、欣興 (3037)、臺光電 (2383)、金像電 (2368)、川湖 (2059)、Vertiv (VRT)。
+   - **下游 (Downstream)**：微軟 Azure、谷歌 Google Cloud、Meta、亞馬遜 AWS、甲骨文 OCI、CoreWeave、Tesla xAI、沙烏地/阿聯主權 AI 國家隊。
+2. 📊 **台美股 NVIDIA 概念股終端與籌碼看板**：
+   - 涵蓋 30+ 檔台美核心概念股，整合股價、本益比 (P/E)、殖利率、GB200 營收純度、外資動向、主力籌碼信號與法人評級。
+3. 🧮 **GB200 NVL72 機櫃 BOM 產值與台廠分配試算器**：
+   - 拆解單台 300 萬美元機櫃之晶片 (65%)、CoWoS (7%)、HBM3e (9%)、水冷散熱 (2.8%)、電源 (2.2%)、銅纜背板 (1.8%)、載板 (2.5%) 與 ODM 組裝 (8.3%)。
+   - 動態調整出貨架數（1.5萬~8萬架）與台廠份額，即時精算營收挹注。
+4. 🔬 **晶片架構演進與三大工程瓶頸**：
+   - Hopper vs. Blackwell vs. Rubin (2026) 三世代規格大表。
+   - 深入剖析 CoWoS-L 翹曲良率、120kW 水冷漏液快接頭、NVLink 銅纜極限 vs. 矽光子 CPO 三大產業攻防戰。
+5. 📈 **四大 CSP 資本支出與機櫃出貨預測**：
+   - 微軟、谷歌、Meta、亞馬遜 2024~2026 年突破 2,700 億美元 CapEx 曲線。
+   - 2024Q4 至 2026 年 GB200 機櫃逐季放量排程表。
+
+## 🚀 線上即時體驗
+- GitHub Pages: `https://wangsona-lgtm.github.io/nvidia-supply-chain-hub/`

@@ -1,0 +1,163 @@
+/* ==========================================================================
+   晶片架構與機櫃硬體視覺樣式表 (Architecture & Rack Visualizer)
+   ========================================================================== */
+
+/* 世代對比大表 */
+.arch-table-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.arch-table-wrapper {
+  overflow-x: auto;
+}
+.arch-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+.arch-spec-table th {
+  background: #09101d;
+  color: var(--text-muted);
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+.arch-spec-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  white-space: nowrap;
+}
+.arch-spec-table tr:hover td {
+  background: rgba(118, 185, 0, 0.05);
+}
+
+/* 技術瓶頸卡片 */
+.bottlenecks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+.bottleneck-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.bottleneck-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.bottleneck-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+}
+.bottleneck-severity {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(244, 63, 94, 0.15);
+  color: #fb7185;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.bottleneck-box {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* 機櫃內部結構視覺 (Rack Visualizer) */
+.rack-diagram-container {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 30px;
+}
+@media (max-width: 900px) {
+  .rack-diagram-container { grid-template-columns: 1fr; }
+}
+
+.rack-chassis-model {
+  background: #05080f;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 0 16px rgba(118, 185, 0, 0.15);
+}
+.rack-slot {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+.rack-slot:hover {
+  border-color: var(--nv-green);
+  background: rgba(118, 185, 0, 0.1);
+}
+.rack-slot.compute { border-left: 4px solid #76b900; }
+.rack-slot.switch { border-left: 4px solid #38bdf8; }
+.rack-slot.power { border-left: 4px solid #ffd700; }
+.rack-slot.cdu { border-left: 4px solid #0ea5e9; }
+
+/* 資本支出圖表卡片 */
+.capex-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.capex-item-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 16px;
+}
+.capex-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.capex-bar-wrapper {
+  margin: 10px 0;
+}
+.capex-bar-track {
+  width: 100%;
+  height: 8px;
+  background: #1e293b;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.capex-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}

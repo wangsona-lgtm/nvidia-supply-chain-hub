@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>輝達 NVIDIA AI 全球上下游產業鏈與台美股戰情觀測站 | NVIDIA AI Ecosystem Terminal</title>
+  
+  <!-- 核心樣式 -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/architecture.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- 頂部導航列 -->
+  <header class="top-nav">
+    <div class="brand-section">
+      <div class="brand-logo">⚡</div>
+      <div class="brand-text">
+        <h1>輝達 NVIDIA AI 全球上下游產業鏈戰情觀測站</h1>
+        <p>NVIDIA AI ECOSYSTEM & TAIWAN-US SUPPLY CHAIN INTELLIGENCE TERMINAL</p>
+      </div>
+    </div>
+    <div class="nav-meta">
+      <div class="live-pill">
+        <span class="live-dot"></span>
+        <span>BLACKWELL & RUBIN · 全球產業在線</span>
+      </div>
+      <span style="color:#64748b;">最後更新：2026-11-16</span>
+    </div>
+  </header>
+
+  <!-- 分頁導航選單 (Tab Navigation) -->
+  <nav class="tabs-header">
+    <button class="tab-btn active" data-tab="tab-blueprint">
+      <span>🌐</span> AI 上中下游產業鏈全景圖譜
+    </button>
+    <button class="tab-btn" data-tab="tab-stocks">
+      <span>📊</span> 台美股概念股終端與籌碼看板
+    </button>
+    <button class="tab-btn" data-tab="tab-calculator">
+      <span>🧮</span> GB200 NVL72 機櫃 BOM 產值試算器
+    </button>
+    <button class="tab-btn" data-tab="tab-architecture">
+      <span>🔬</span> 晶片架構演進與三大工程瓶頸
+    </button>
+    <button class="tab-btn" data-tab="tab-capex">
+      <span>📈</span> 四大 CSP 資本支出與機櫃出貨預測
+    </button>
+  </nav>
+
+  <!-- 主內容容器 -->
+  <main class="main-container">
+
+    <!-- 即時關鍵大盤跑馬看板 (Market KPIs) -->
+    <section class="kpi-ticker-grid" id="kpiTickerContainer">
+      <!-- 由 app.js 動態渲染 -->
+    </section>
+
+    <!-- 分頁一：AI 上中下游產業鏈全景圖譜 -->
+    <section id="tab-blueprint" class="tab-pane active">
+      <div id="supplyChainVisualizerContainer"></div>
+    </section>
+
+    <!-- 分頁二：台美股概念股終端與籌碼看板 -->
+    <section id="tab-stocks" class="tab-pane">
+      <div class="stock-filters-bar">
+        <div class="stock-category-pills">
+          <button class="cat-pill active" data-cat="all">全部核心概念股 (All)</button>
+          <button class="cat-pill" data-cat="taiwan">🇹🇼 台灣核心供應鏈 (台積/鴻海/廣達/雙鴻/奇鋐)</button>
+          <button class="cat-pill" data-cat="us">🇺🇸 美股科技巨頭 (NVDA/MSFT/MU/VRT/AVGO)</button>
+          <button class="cat-pill" data-cat="cooling">💧 水冷散熱大聯盟 (雙鴻/奇鋐/健策/Vertiv)</button>
+          <button class="cat-pill" data-cat="cpo">⚡ 矽光子 CPO 先驅 (聯鈞/光聖/上詮/博通)</button>
+          <button class="cat-pill" data-cat="odm">🏗️ 伺服器整櫃 ODM 組裝 (鴻海/廣達/緯穎/緯創/川湖)</button>
+          <button class="cat-pill" data-cat="foundry">🔬 晶圓代工與 CoWoS 封測 (台積電/SK海力士/旺矽/穎崴)</button>
+        </div>
+        <div>
+          <input type="text" id="stockSearchInput" class="search-input-box" placeholder="🔍 搜尋代號、公司名稱、業務角色或技術...">
+        </div>
+      </div>
+
+      <!-- 股票卡片網格 -->
+      <div class="stocks-grid" id="stocksGrid"></div>
+
+      <!-- 股票橫向財務與籌碼指標大表 -->
+      <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:10px; overflow:hidden; margin-bottom:30px;">
+        <div style="padding:14px 18px; background:#09101d; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center;">
+          <h3 style="font-size:15px; font-weight:800; color:#fff;">📊 全球重要輝達概念股橫向財務與籌碼指標矩陣</h3>
+          <span style="font-size:11px; color:#94a3b8;">含估值、GB200 純度與主力法人評級</span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="arch-spec-table">
+            <thead>
+              <tr>
+                <th>代號 (Ticker)</th>
+                <th>公司名稱 (Company)</th>
+                <th>國別</th>
+                <th>所屬賽道</th>
+                <th>股價 (Price)</th>
+                <th>漲跌幅 (%)</th>
+                <th>本益比 (P/E)</th>
+                <th>股息殖利率</th>
+                <th>GB200 營收純度</th>
+                <th>主力籌碼動向</th>
+                <th>法人評級</th>
+              </tr>
+            </thead>
+            <tbody id="stocksTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 分頁三：GB200 NVL72 機櫃 BOM 產值試算器 -->
+    <section id="tab-calculator" class="tab-pane">
+      <div id="bomCalculatorContainer"></div>
+    </section>
+
+    <!-- 分頁四：晶片架構演進與三大工程瓶頸 -->
+    <section id="tab-architecture" class="tab-pane">
+      <div id="architectureContainer"></div>
+    </section>
+
+    <!-- 分頁五：四大 CSP 資本支出與機櫃出貨預測 -->
+    <section id="tab-capex" class="tab-pane">
+      <div id="capexForecastContainer"></div>
+    </section>
+
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="hub-footer">
+    <p>輝達 NVIDIA AI 全球上下游產業鏈戰情觀測站 · 涵蓋 Blackwell / Rubin 晶片架構、CoWoS 封裝與水冷伺服器生態</p>
+    <p style="margin-top:4px; color:#475569;">研究數據僅供產業、學術與科技投資參考，不構成任何具體投資建議</p>
+  </footer>
+
+  <!-- 引入邏輯與數據庫腳本 -->
+  <script src="js/supply_chain_data.js"></script>
+  <script src="js/stocks_data.js"></script>
+  <script src="js/bom_calculator.js"></script>
+  <script src="js/architecture_data.js"></script>
+  <script src="js/capex_forecast_data.js"></script>
+  <script src="js/visualizer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
