@@ -451,54 +451,266 @@ function renderArchitectureSection() {
 }
 
 /**
- * 渲染 CSP 資本支出與機櫃出貨預測 (CapEx & Shipments)
+ * 渲染 CSP 資本支出、營收與現金流量表戰情模組 (CapEx, Revenue & Cash Flow)
  */
 function renderCapexForecastSection() {
   const container = document.getElementById('capexForecastContainer');
   if (!container || !window.CAPEX_FORECAST_DATA) return;
 
   const data = window.CAPEX_FORECAST_DATA;
+  const agg = data.aggregated;
 
   container.innerHTML = `
-    <div style="margin-bottom:20px; padding:16px 20px; background:linear-gradient(135deg, rgba(118,185,0,0.1), rgba(56,189,248,0.1)); border:1px solid rgba(118,185,0,0.3); border-radius:10px;">
-      <h2 style="font-size:18px; font-weight:800; color:#a3e635;">📈 四大 CSP 雲端巨頭資本支出 (CapEx) 狂飆曲線</h2>
-      <p style="font-size:12px; color:#cbd5e1; margin-top:4px;">${data.strategicSummary}</p>
+    <!-- 頂部戰略總覽 Banner -->
+    <div style="margin-bottom:20px; padding:18px 22px; background:linear-gradient(135deg, rgba(118,185,0,0.12), rgba(56,189,248,0.12)); border:1px solid rgba(118,185,0,0.4); border-radius:10px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+        <h2 style="font-size:19px; font-weight:900; color:#a3e635; display:flex; align-items:center; gap:8px;">
+          <span>📈</span> 四大 CSP 雲端巨頭資本支出 (CapEx) 狂飆曲線與財務造血大盤
+        </h2>
+        <span class="live-pill">
+          <span class="live-dot"></span>
+          <span>彭博與大摩最新共識預測 · 2023 - 2026E 全追蹤</span>
+        </span>
+      </div>
+      <p style="font-size:12.5px; color:#cbd5e1; line-height:1.6;">${data.strategicSummary}</p>
     </div>
 
-    <!-- 四大巨頭 CapEx 卡片 -->
+    <!-- 四大巨頭合計總覽 KPI 看板 -->
+    <div class="capex-summary-grid">
+      <div class="capex-summary-card" style="border-left: 4px solid #a3e635;">
+        <div class="capex-summary-label">2025E 四大 CSP 總 CapEx</div>
+        <div class="capex-summary-val" style="color:#a3e635;">$${agg.totalCapex.y2025e} 億美元</div>
+        <div class="capex-summary-sub">年增率 ${agg.totalCapex.growth2025} (突破 8.8 兆台幣)</div>
+      </div>
+      <div class="capex-summary-card" style="border-left: 4px solid #38bdf8;">
+        <div class="capex-summary-label">2026E 四大 CSP 總 CapEx</div>
+        <div class="capex-summary-val" style="color:#38bdf8;">$${agg.totalCapex.y2026e} 億美元</div>
+        <div class="capex-summary-sub">年增率 ${agg.totalCapex.growth2026} (續創歷史新高)</div>
+      </div>
+      <div class="capex-summary-card" style="border-left: 4px solid #ffd700;">
+        <div class="capex-summary-label">2025E 四大 CSP 營業現金流 (OCF)</div>
+        <div class="capex-summary-val" style="color:#ffd700;">$${agg.totalOcf.y2025e} 億美元</div>
+        <div class="capex-summary-sub">本業年產超過 16.7 兆台幣現金流</div>
+      </div>
+      <div class="capex-summary-card" style="border-left: 4px solid #c084fc;">
+        <div class="capex-summary-label">2025E 自由現金流 (FCF) 與金庫</div>
+        <div class="capex-summary-val" style="color:#c084fc;">$${agg.totalFcf.y2025e} 億美元</div>
+        <div class="capex-summary-sub">扣除 CapEx 後仍手握 $3,375 億現金儲備</div>
+      </div>
+    </div>
+
+    <!-- 1. 四大巨頭 2023 - 2026E 資本支出完整對比卡片 (Four Multi-Year Bars) -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin: 10px 0 14px 0;">
+      <h3 style="font-size:16px; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+        <span>📊</span> 巨頭個別資本支出 2023 至 2026 年階梯式狂飆軌跡 (CapEx Multi-Year Trajectory)
+      </h3>
+      <span style="font-size:11px; color:#94a3b8;">單位：億美元 USD Billion</span>
+    </div>
+
     <div class="capex-card-grid">
       ${data.hyperscalers.map(c => `
         <div class="capex-item-card" style="border-top:3px solid ${c.color};">
           <div class="capex-item-top">
-            <h3 style="font-size:16px; font-weight:800; color:#fff;">${c.name}</h3>
-            <span style="font-size:11px; padding:2px 8px; border-radius:10px; background:${c.color}22; color:${c.color}; font-weight:bold;">${c.ticker}</span>
+            <div>
+              <h4 style="font-size:16px; font-weight:800; color:#fff;">${c.name}</h4>
+              <div style="font-size:11px; color:#94a3b8; font-family:var(--font-mono); margin-top:1px;">
+                AI 佔比估: <strong style="color:#a3e635;">${c.aiSharePct}</strong>
+              </div>
+            </div>
+            <span style="font-size:11px; padding:3px 10px; border-radius:12px; background:${c.color}22; color:${c.color}; font-weight:bold; border:1px solid ${c.color}55;">
+              ${c.ticker}
+            </span>
           </div>
 
-          <div style="font-size:11px; color:#94a3b8; margin-bottom:8px;">AI 佔比估: <strong style="color:#fff;">${c.aiSharePct}</strong></div>
+          <!-- 2023-2026E 多年度對比進度條 -->
+          <div class="capex-multi-bars-container">
+            <!-- 2023 -->
+            <div class="capex-bar-row">
+              <span class="capex-bar-year">2023 實際</span>
+              <div class="capex-bar-track-multi">
+                <div class="capex-bar-fill-multi" style="width:${(c.capex.y2023 / 1100) * 100}%; background:#64748b;"></div>
+              </div>
+              <span class="capex-bar-val-multi" style="color:#94a3b8;">$${c.capex.y2023} 億</span>
+            </div>
 
-          <div class="capex-bar-wrapper">
-            <div style="display:flex; justify-content:space-between; font-size:11px;">
-              <span>2024 年: $${c.y2024} 億</span>
-              <span style="color:#a3e635; font-weight:bold;">2025 預估: $${c.y2025e} 億</span>
+            <!-- 2024 -->
+            <div class="capex-bar-row">
+              <span class="capex-bar-year">2024 實際</span>
+              <div class="capex-bar-track-multi">
+                <div class="capex-bar-fill-multi" style="width:${(c.capex.y2024 / 1100) * 100}%; background:#38bdf8;"></div>
+              </div>
+              <span class="capex-bar-val-multi" style="color:#38bdf8;">
+                $${c.capex.y2024} 億 <span class="fin-badge-blue">${c.capex.growth2024}</span>
+              </span>
             </div>
-            <div class="capex-bar-track">
-              <div class="capex-bar-fill" style="width:${(c.y2025e / 1000) * 100}%; background:${c.color};"></div>
+
+            <!-- 2025 預估 (重點突顯) -->
+            <div class="capex-bar-row" style="background:rgba(118,185,0,0.08); padding:3px 6px; border-radius:4px;">
+              <span class="capex-bar-year" style="color:#a3e635;">2025 預估</span>
+              <div class="capex-bar-track-multi">
+                <div class="capex-bar-fill-multi" style="width:${(c.capex.y2025e / 1100) * 100}%; background:#a3e635; box-shadow:0 0 8px rgba(163,230,53,0.5);"></div>
+              </div>
+              <span class="capex-bar-val-multi" style="color:#a3e635;">
+                $${c.capex.y2025e} 億 <span class="fin-badge-green">${c.capex.growth2025}</span>
+              </span>
             </div>
-            <div style="font-size:10px; color:#94a3b8; text-align:right; margin-top:2px;">2026 預估: $${c.y2026e} 億美元</div>
+
+            <!-- 2026 預估 (重點突顯) -->
+            <div class="capex-bar-row" style="background:rgba(255,215,0,0.08); padding:3px 6px; border-radius:4px;">
+              <span class="capex-bar-year" style="color:#ffd700;">2026 預估</span>
+              <div class="capex-bar-track-multi">
+                <div class="capex-bar-fill-multi" style="width:${(c.capex.y2026e / 1100) * 100}%; background:#ffd700; box-shadow:0 0 8px rgba(255,215,0,0.5);"></div>
+              </div>
+              <span class="capex-bar-val-multi" style="color:#ffd700;">
+                $${c.capex.y2026e} 億 <span class="fin-badge-gold">${c.capex.growth2026}</span>
+              </span>
+            </div>
           </div>
 
-          <div style="font-size:11px; color:#cbd5e1; line-height:1.5; background:rgba(15,23,42,0.6); padding:8px; border-radius:4px; margin-top:10px;">
-            ${c.primaryFocus}
+          <div style="font-size:11px; color:#cbd5e1; line-height:1.55; background:rgba(15,23,42,0.6); padding:8px 10px; border-radius:6px; margin-top:auto; border-left:3px solid ${c.color};">
+            🎯 <strong>核心部署計畫：</strong>${c.primaryFocus}
           </div>
         </div>
       `).join('')}
     </div>
 
-    <!-- 機櫃逐季出貨排程大表 -->
+    <!-- 2. 四大 CSP 綜合營收與雲端 AI 營收對比大表 -->
     <div class="arch-table-card">
-      <div style="padding:14px 18px; background:#09101d; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center;">
-        <h3 style="font-size:15px; font-weight:800; color:#fff;">🚢 全球 GB200 機櫃出貨放量時程預估 (單位：架 Racks)</h3>
-        <span style="font-size:11px; color:#94a3b8;">資料來源：各大外資券商綜合研報預測</span>
+      <div style="padding:14px 18px; background:#09101d; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <h3 style="font-size:15px; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+          <span>📑</span> 四大 CSP 綜合營收與核心雲端事業營收表 (Revenue & Cloud Segments)
+        </h3>
+        <span style="font-size:11px; color:#94a3b8;">數據幣別：億美元 (USD Billion)</span>
+      </div>
+      <div class="arch-table-wrapper">
+        <table class="arch-spec-table">
+          <thead>
+            <tr>
+              <th>巨頭名稱 (Company)</th>
+              <th>2023 總營收</th>
+              <th>2024 總營收</th>
+              <th style="color:#a3e635;">2025E 總營收</th>
+              <th style="color:#ffd700;">2026E 總營收</th>
+              <th>核心雲端 / AI 變現事業</th>
+              <th style="color:#38bdf8;">2024 雲端營收</th>
+              <th style="color:#a3e635;">2025E 雲端營收 (YoY)</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.hyperscalers.map(c => `
+              <tr>
+                <td>
+                  <strong>${c.name}</strong> 
+                  <span style="font-size:10px; color:${c.color}; font-weight:bold; margin-left:4px;">${c.ticker}</span>
+                </td>
+                <td style="font-family:var(--font-mono); color:#94a3b8;">$${c.revenue.y2023.toLocaleString()} 億</td>
+                <td style="font-family:var(--font-mono); color:#cbd5e1;">$${c.revenue.y2024.toLocaleString()} 億</td>
+                <td style="font-family:var(--font-mono); color:#a3e635; font-weight:bold;">
+                  $${c.revenue.y2025e.toLocaleString()} 億 <span class="fin-badge-green">${c.revenue.growth2025}</span>
+                </td>
+                <td style="font-family:var(--font-mono); color:#ffd700; font-weight:bold;">
+                  $${c.revenue.y2026e.toLocaleString()} 億
+                </td>
+                <td><span style="color:#f8fafc; font-weight:600;">${c.revenue.cloudSegment}</span></td>
+                <td style="font-family:var(--font-mono); color:#38bdf8; font-weight:bold;">
+                  $${c.revenue.cloudRevenue2024.toLocaleString()} 億
+                </td>
+                <td style="font-family:var(--font-mono); color:#a3e635; font-weight:bold;">
+                  $${c.revenue.cloudRevenue2025e.toLocaleString()} 億 <span class="fin-badge-green">${c.revenue.cloudGrowth}</span>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3. 四大 CSP 現金流量表與自由現金流造血大表 -->
+    <div class="arch-table-card">
+      <div style="padding:14px 18px; background:#09101d; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <h3 style="font-size:15px; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+          <span>💰</span> 四大 CSP 現金流量表與自有資金造血大盤 (Cash Flow & Self-Funding Power)
+        </h3>
+        <span style="font-size:11px; color:#a3e635;">結論：四大巨頭 OCF 逾 5,200 億美元，完全以本業現金覆蓋 CapEx！</span>
+      </div>
+      <div class="arch-table-wrapper">
+        <table class="arch-spec-table">
+          <thead>
+            <tr>
+              <th>巨頭名稱 (Company)</th>
+              <th>2024 營業現金流 (OCF)</th>
+              <th style="color:#ffd700;">2025E 營業現金流 (OCF)</th>
+              <th style="color:#fb7185;">2025E 資本支出 (CapEx)</th>
+              <th style="color:#a3e635;">2025E 自由現金流 (FCF)</th>
+              <th>CapEx / OCF 比重</th>
+              <th style="color:#38bdf8;">帳上現金與流動投資</th>
+              <th>財務健康與防禦力評級</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.hyperscalers.map(c => `
+              <tr>
+                <td><strong>${c.name}</strong> (${c.ticker})</td>
+                <td style="font-family:var(--font-mono); color:#cbd5e1;">$${c.cashFlow.ocf2024.toLocaleString()} 億</td>
+                <td style="font-family:var(--font-mono); color:#ffd700; font-weight:bold;">$${c.cashFlow.ocf2025e.toLocaleString()} 億</td>
+                <td style="font-family:var(--font-mono); color:#fb7185; font-weight:bold;">$${c.capex.y2025e} 億</td>
+                <td style="font-family:var(--font-mono); color:#a3e635; font-weight:bold;">$${c.cashFlow.fcf2025e.toLocaleString()} 億</td>
+                <td style="font-family:var(--font-mono); font-weight:bold; color:#f8fafc;">
+                  ${c.cashFlow.capexToOcf2025}
+                </td>
+                <td style="font-family:var(--font-mono); color:#38bdf8; font-weight:bold;">
+                  $${c.cashFlow.cashReserves} 億
+                </td>
+                <td>
+                  <span class="fin-badge-green">極度強健 (AAA級現金牛)</span>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. 戰略深度剖析卡片：為何 AI 資本支出具備長期持續性？ -->
+    <div class="bottlenecks-grid" style="margin-bottom:24px;">
+      <div class="bottleneck-card" style="border-top:3px solid #a3e635;">
+        <div class="bottleneck-header">
+          <div class="bottleneck-title">🛡️ 本業現金流自我造血，完全非舉債膨脹</div>
+          <span class="bottleneck-severity" style="background:rgba(163,230,53,0.15); color:#a3e635;">非網絡泡沫</span>
+        </div>
+        <div class="bottleneck-box">
+          2000 年互聯網泡沫破裂的主因是新創公司毫無營收、全靠借貸與燒投資人的錢鋪設光纖。如今四大巨頭 2025 年合計本業營業現金流 (OCF) 高達 <strong>5,230 億美元</strong>，即使掏出 <strong>2,760 億美元</strong> 買 GPU 與建機房，淨剩餘自由現金流 (FCF) 仍超過 <strong>2,470 億美元</strong>，完全自給自足！
+        </div>
+      </div>
+
+      <div class="bottleneck-card" style="border-top:3px solid #38bdf8;">
+        <div class="bottleneck-header">
+          <div class="bottleneck-title">💰 超過 3,300 億美元流動性戰略金庫</div>
+          <span class="bottleneck-severity" style="background:rgba(56,189,248,0.15); color:#38bdf8;">頂級防禦壁壘</span>
+        </div>
+        <div class="bottleneck-box">
+          微軟、谷歌、Meta 與亞馬遜帳上合計囤積了超過 <strong>3,375 億美元</strong> 的高流動性現金與美國國債。即便未來出現短期宏觀經濟震盪，各大巨頭的現金護城河足以支撐其在不依賴任何外部銀行融資的情況下，持續採購 Blackwell 與 Rubin 機櫃長達 3 年以上。
+        </div>
+      </div>
+
+      <div class="bottleneck-card" style="border-top:3px solid #ffd700;">
+        <div class="bottleneck-header">
+          <div class="bottleneck-title">🚀 雲端與廣告業務已見清晰 ROI 變現</div>
+          <span class="bottleneck-severity" style="background:rgba(255,215,0,0.15); color:#ffd700;">正向飛輪啟動</span>
+        </div>
+        <div class="bottleneck-box">
+          AI 已經開始切實貢獻真金白銀：微軟 Azure 營收年增 20%（其中 AI 貢獻逾 12 個百分點）、Google Cloud 年增率暴衝至 32% 以上且營業利潤率持續轉正擴張、Meta 憑藉 AI 推薦引擎帶動廣告單價與點擊率雙位數成長，算力投資已進入「投資 ➔ 變現 ➔ 擴大再投資」之良性循環。
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 機櫃逐季出貨排程大表 -->
+    <div class="arch-table-card">
+      <div style="padding:14px 18px; background:#09101d; border-bottom:1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <h3 style="font-size:15px; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+          <span>🚢</span> 全球 GB200 機櫃出貨放量時程預估 (單位：架 Racks)
+        </h3>
+        <span style="font-size:11px; color:#94a3b8;">資料來源：各大外資券商綜合研報預測 (2024Q4 - 2026 全年)</span>
       </div>
       <div class="arch-table-wrapper">
         <table class="arch-spec-table">

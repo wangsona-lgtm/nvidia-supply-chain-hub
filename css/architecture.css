@@ -136,28 +136,118 @@
 .capex-item-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.capex-item-card:hover {
+  border-color: rgba(118, 185, 0, 0.5);
+  transform: translateY(-2px);
 }
 .capex-item-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
-.capex-bar-wrapper {
-  margin: 10px 0;
+.capex-multi-bars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 12px 0;
+  background: rgba(10, 16, 28, 0.6);
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
-.capex-bar-track {
-  width: 100%;
-  height: 8px;
-  background: #1e293b;
+.capex-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+.capex-bar-year {
+  width: 66px;
+  font-weight: 700;
+  color: #94a3b8;
+  font-family: var(--font-mono);
+}
+.capex-bar-track-multi {
+  flex: 1;
+  height: 9px;
+  background: #162032;
   border-radius: 4px;
   overflow: hidden;
-  margin-top: 4px;
 }
-.capex-bar-fill {
+.capex-bar-fill-multi {
   height: 100%;
   border-radius: 4px;
   transition: width 0.6s ease;
+}
+.capex-bar-val-multi {
+  width: 120px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-weight: 800;
+}
+
+/* 總計看板與財務摘要 */
+.capex-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.capex-summary-card {
+  background: #09101d;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+}
+.capex-summary-label {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.capex-summary-val {
+  font-size: 22px;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  color: #fff;
+}
+.capex-summary-sub {
+  font-size: 10.5px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* 財務指標標籤 */
+.fin-badge-green {
+  color: #a3e635;
+  background: rgba(163, 230, 53, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 10px;
+}
+.fin-badge-blue {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 10px;
+}
+.fin-badge-gold {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 10px;
 }
